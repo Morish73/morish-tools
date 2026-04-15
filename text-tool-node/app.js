@@ -20,9 +20,10 @@ app.get('/', (req, res) => {
 
 app.post('/format', (req, res) => {
   const inputText = req.body.inputText || '';
+  const mode = req.body.mode || '';
 
   try {
-    const outputText = formatService.format(inputText);
+    const outputText = formatService.format(inputText, mode);
     res.render('index', {
       inputText,
       outputText,
