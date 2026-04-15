@@ -32,7 +32,7 @@ app.post('/format', (req, res) => {
     res.render('index', {
       inputText,
       outputText: '',
-      message: '変換に失敗しました'
+      message: `変換に失敗しました ${e.message}`
     });
   }
 });
