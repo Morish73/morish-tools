@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.render('index', {
     inputText: '',
     outputText: '',
-    error: null
+    message: 'テキストを貼り付けて整形方法を選んでください。'
   });
 });
 
@@ -26,13 +26,13 @@ app.post('/format', (req, res) => {
     res.render('index', {
       inputText,
       outputText,
-      error: null
+      message: `整形しました: ${mode}`
     });
   } catch (e) {
     res.render('index', {
       inputText,
       outputText: '',
-      error: '変換に失敗しました'
+      message: '変換に失敗しました'
     });
   }
 });
