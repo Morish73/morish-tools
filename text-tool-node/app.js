@@ -1,38 +1,49 @@
 const express = require('express');
+const path = require('path');
 const formatService = require('./formatService');
 
 const app = express();
-const PORT = 3000;
 
-// EJSをテンプレートエンジンとして使う
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// formのPOSTを受け取れるようにする
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// 初期表示
 app.get('/', (req, res) => {
   res.render('index', {
     inputText: '',
     outputText: '',
-    message: 'テキストを貼り付けて整形方法を選んでください。'
+    error: null
   });
 });
 
-// 整形実行
 app.post('/format', (req, res) => {
   const inputText = req.body.inputText || '';
-  const mode = req.body.mode || '';
 
-  const outputText = formatService.format(inputText, mode);
+  try {
+    const outputText = formatService.formatText(inputText);
+    res.render('index', {
+      inputText,
+      outputText,
+      error: null
+    });
+  } catch (e) {
+    res.render('index', {
+      inputText,
+      outputText: '',
+      error: '変換に失敗しました'
+    });
+  }
+});
 
-  res.render('index', {
-    inputText,
-    outputText,
-    message: `整形しました: ${mode}`
+// ローカル実行用
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
   });
-});
+}
 
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT} で起動中`);
-});
+// Vercel用
+module.exports = app;
