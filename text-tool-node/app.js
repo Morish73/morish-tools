@@ -22,7 +22,7 @@ app.post('/format', (req, res) => {
   const inputText = req.body.inputText || '';
 
   try {
-    const outputText = formatService.formatText(inputText);
+    const outputText = formatService.format(inputText);
     res.render('index', {
       inputText,
       outputText,
