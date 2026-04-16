@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const formatService = require('./formatService');
+const charCountService = require('./charCountService');
 
 const app = express();
 
@@ -10,7 +11,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 app.get('/', (req, res) => {
+  res.render('home');
+});
+
+
+app.get('/text-format', (req, res) => {
   res.render('index', {
     inputText: '',
     outputText: '',
@@ -66,6 +73,32 @@ app.post('/format', (req, res) => {
       message: `変換に失敗しました ${e.message}`
     });
   }
+});
+
+app.get('/char-count', (req, res) => {
+  res.render('char-count', {
+    inputText: '',
+    outputText: '',
+    message: 'テキストを貼り付けてください。',
+  });
+});
+
+app.post('/char-count', (req, res) => {
+  const inputText = req.body.inputText || '';
+  const counts = charCountService.countCharacters(inputText);
+
+  res.render('char-count', {
+    inputText,
+    counts
+  });
+}); 
+
+app.get('/privacy-policy', (req, res) => {
+  res.render('privacy-policy');
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact');
 });
 
 // ローカル実行用
