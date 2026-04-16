@@ -14,20 +14,50 @@ app.get('/', (req, res) => {
   res.render('index', {
     inputText: '',
     outputText: '',
-    message: 'テキストを貼り付けて整形方法を選んでください。'
+    message: 'テキストを貼り付けて整形方法を選んでください。',
+
+    mode: 'normal',
+    sortOrder: 'none',
+    inputDelimiter: 'newline',
+    outputDelimiter: 'newline',
+    quoteType: 'none',
+    options: []
   });
 });
 
+
 app.post('/format', (req, res) => {
   const inputText = req.body.inputText || '';
-  const mode = req.body.mode || '';
+  const mode = req.body.mode || 'normal';
+  const sortOrder = req.body.sortOrder || 'none';
+  const inputDelimiter = req.body.inputDelimiter || 'comma';
+  const outputDelimiter = req.body.outputDelimiter || 'comma';
+  const quoteType = req.body.quoteType || 'none';
+  const options = req.body.options
+    ? Array.isArray(req.body.options) ? req.body.options : [req.body.options]
+    : [];
 
   try {
-    const outputText = formatService.format(inputText, mode);
+    const outputText = formatService.format({
+      inputText,
+      mode,
+      sortOrder,
+      inputDelimiter,
+      outputDelimiter,
+      quoteType,
+      options
+    });
+  
     res.render('index', {
       inputText,
       outputText,
-      message: `整形しました: ${mode}`
+      message: '整形しました',
+      mode,
+      sortOrder,
+      inputDelimiter,
+      outputDelimiter,
+      quoteType,
+      options      
     });
   } catch (e) {
     res.render('index', {
