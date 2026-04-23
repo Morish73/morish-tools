@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ブログ記事作成プロンプト生成ツール</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+
+  <!-- ナビ -->
+  <div class="nav">
+    <a href="/">トップ</a>
+    <a href="/text-format">テキスト整形</a>
+    <a href="/char-count">文字数カウント</a>
+    <a href="/blog-prompt-maker">ブログプロンプト生成</a>
+  </div>
+
+    <h1>ブログ記事作成プロンプト生成ツール</h1>
+    <p class="lead">
+      入力内容をもとに、AIに渡せるブログ記事作成プロンプトを生成します。<br>
+      できるだけ具体的に書くほど、記事の質が上がります。
+    </p>
+
+    <form action="/generate" method="POST" class="form">
+
+      <div class="grid">
+
+        <!-- テーマ -->
+        <div class="field full">
+          <label>記事テーマ *</label>
+          <small>具体的なテーマを書くと精度が上がります</small>
+          <input type="text" name="theme"
+            value="<%= values.theme || '' %>"
+            placeholder="例：スーパーマリオブラザーズの裏技まとめ" />
+        </div>
+
+        <!-- 読者 -->
+        <div class="field">
+          <label>想定読者</label>
+          <small>誰に向けた記事かを具体的に</small>
+          <input type="text" name="audience"
+            value="<%= values.audience || '' %>"
+            placeholder="例：30代の昔ゲームが好きだった会社員" />
+        </div>
+
+        <!-- 目的 -->
+        <div class="field">
+          <label>記事の目的</label>
+          <small>この記事で読者にどうなってほしいか</small>
+          <input type="text" name="purpose"
+            value="<%= values.purpose || '' %>"
+            placeholder="例：懐かしさを感じて楽しんでもらう" />
+        </div>
+
+        <!-- 素材 -->
+        <div class="field full">
+          <label>記事に含めたい情報</label>
+          <small>具体的な内容を書くと記事が濃くなります</small>
+          <textarea name="materials" rows="5"
+            placeholder="例：
+・スーパーマリオの無限1UP
+・ワープゾーンの場所
+・ドラクエのレベル上げの思い出"><%= values.materials || '' %></textarea>
+        </div>
+
+        <!-- キーワード -->
+        <div class="field">
+          <label>参考キーワード</label>
+          <small>SEOや内容の軸になるキーワード</small>
+          <input type="text" name="keywords"
+            value="<%= values.keywords || '' %>"
+            placeholder="例：裏技, 無限1UP, ワープゾーン, レトロゲーム" />
+        </div>
+
+        <!-- メモ -->
+        <div class="field">
+          <label>参考メモ</label>
+          <small>思いついたことを自由に</small>
+          <input type="text" name="references"
+            value="<%= values.references || '' %>"
+            placeholder="例：友達と裏技を教え合った記憶" />
+        </div>
+
+        <!-- 文体 -->
+        <div class="field">
+          <label>文体</label>
+          <select name="tone">
+            <option value="">選択してください</option>
+            <option value="やわらかく親しみやすい文体">やわらかめ</option>
+            <option value="論理的で信頼感のある文体">論理的</option>
+            <option value="専門的だが読みやすい文体">専門寄り</option>
+          </select>
+        </div>
+
+        <!-- 文字数 -->
+        <div class="field">
+          <label>文字数</label>
+          <select name="length">
+            <option value="">選択してください</option>
+            <option value="1500文字前後">1500文字前後</option>
+            <option value="3000文字前後">3000文字前後</option>
+            <option value="5000文字前後">5000文字前後</option>
+          </select>
+        </div>
+
+        <!-- 構成 -->
+        <div class="field">
+          <label>構成スタイル</label>
+          <select name="structureStyle">
+            <option value="">選択してください</option>
+            <option value="導入→本文→まとめ">基本構成</option>
+            <option value="問題提起→解決策→まとめ">問題解決型</option>
+            <option value="結論→理由→具体例→まとめ">PREP風</option>
+          </select>
+        </div>
+
+        <!-- 見出し -->
+        <div class="field">
+          <label>見出し数</label>
+          <select name="headingCount">
+            <option value="">選択してください</option>
+            <option value="3〜5個">3〜5個</option>
+            <option value="5〜7個">5〜7個</option>
+          </select>
+        </div>
+
+        <!-- チェック -->
+        <div class="field full checkbox-group">
+          <label><input type="checkbox" name="seo" /> SEOを意識する</label>
+          <label><input type="checkbox" name="simpleWords" /> 専門用語をやさしくする</label>
+          <label><input type="checkbox" name="cta" /> CTAを入れる</label>
+        </div>
+
+        <!-- NG -->
+        <div class="field">
+          <label>避けたい表現</label>
+          <input type="text" name="forbiddenExpressions"
+            value="<%= values.forbiddenExpressions || '' %>"
+            placeholder="例：煽りすぎる表現、断定しすぎる言い回し" />
+        </div>
+
+        <!-- 差別化 -->
+        <div class="field">
+          <label>差別化ポイント</label>
+          <small>他の記事と違う強み</small>
+          <input type="text" name="differentiation"
+            value="<%= values.differentiation || '' %>"
+            placeholder="例：実体験ベースで書く、初心者向けに具体例多め" />
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button type="submit">プロンプト生成</button>
+        <button type="reset" class="secondary">リセット</button>
+      </div>
+
+    </form>
+
+    <section class="result">
+      <h2>生成されたプロンプト</h2>
+      <textarea readonly rows="20"><%= prompt || '' %></textarea>
+    </section>
+  </div>
+</body>
+</html>

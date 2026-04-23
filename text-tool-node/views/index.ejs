@@ -130,6 +130,15 @@
       border: 1px solid #cfe3ff;
       color: #234;
     }
+    .nav {
+      margin-bottom: 20px;
+    }
+
+    .nav a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #0070f3;
+    }
 
     @media (max-width: 800px) {
       .grid, .controls {
@@ -144,6 +153,14 @@
 </head>
 <body>
 <div class="container">
+  <!-- ナビ -->
+  <div class="nav">
+    <a href="/">トップ</a>
+    <a href="/text-format">テキスト整形</a>
+    <a href="/char-count">文字数カウント</a>
+    <a href="/blog-prompt-maker">ブログプロンプト生成</a>
+  </div>
+
   <h1>テキスト整形ツール</h1>
   <p class="description">
     入力区切り・出力区切り・ソート・オプションを選んで、テキストを整形します。

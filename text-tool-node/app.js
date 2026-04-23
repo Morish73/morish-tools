@@ -2,12 +2,13 @@ const express = require('express');
 const path = require('path');
 const formatService = require('./formatService');
 const charCountService = require('./charCountService');
+const promptMakingService = require('./promptMakingService');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -92,6 +93,29 @@ app.post('/char-count', (req, res) => {
     counts
   });
 }); 
+
+
+app.get("/blog-prompt-maker", (req, res) => {
+  res.render("blog-prompt-maker", {
+    prompt: "",
+    error: "",
+    warnings: [],
+    values: {}
+  });
+});
+
+app.post("/generate", (req, res) => {
+  const result = promptMakingService.buildPrompt(req.body);
+
+  res.render("blog-prompt-maker", {
+    prompt: result.prompt,
+    error: result.error,
+    warnings: result.warnings || [],
+    values: req.body
+  });
+});
+
+
 
 app.get('/privacy-policy', (req, res) => {
   res.render('privacy-policy');
