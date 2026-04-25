@@ -1,140 +1,404 @@
-body {
+/* =========================
+   Morish Tools common styles
+   ========================= */
+   :root {
+    --bg: #f7f7f8;
+    --surface: #fff;
+    --surface-soft: #fafafa;
+    --text: #222;
+    --muted: #555;
+    --border: #ddd;
+    --link: #0070f3;
+    --primary: #222;
+    --primary-text: #fff;
+    --secondary: #f3f4f6;
+    --secondary-hover: #e8eaed;
+    --radius: 12px;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #f7f7f8;
-    color: #222;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+  
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  
+  h1 { margin-top: 0; font-size: 28px; line-height: 1.3; }
+  h2 { line-height: 1.4; }
+  p { margin: 0 0 14px; }
+  
+  button, input, select, textarea { font: inherit; }
+  textarea { resize: vertical; }
+  button { border-radius: 8px; cursor: pointer; }
+  button:hover { opacity: 0.92; }
+  
+  .nav {
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  
+  .nav a {
+    white-space: nowrap;
+  }
+  
+  .nav a.active {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
   }
   
   .container {
     max-width: 980px;
     margin: 40px auto;
     padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .lead, .description, .hint { color: var(--muted); }
+  
+  .actions, .sub-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .actions { margin-top: 20px; }
+  
+  .site-footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-bottom: 8px;
+  }
+  
+  .footer-copy {
+    margin: 0;
+    color: #777;
+  }
+  
+  /* Home */
+  .page-home {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   }
   
-  h1 {
+  .page-home .header { margin-bottom: 32px; }
+  .page-home .header-inner { display: flex; align-items: center; gap: 16px; }
+  .page-home .logo { width: 56px; height: 56px; object-fit: contain; }
+  .page-home .header-text { display: flex; flex-direction: column; }
+  .page-home .site-title { margin: 0 0 8px; font-size: 32px; }
+  .page-home .lead { margin: 0; }
+  .page-home .section { margin-top: 36px; }
+  
+  .page-home .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .page-home .tool-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    background: var(--surface-soft);
+  }
+  
+  .page-home .tool-card h2 {
     margin-top: 0;
-    font-size: 28px;
+    margin-bottom: 10px;
+    font-size: 20px;
   }
   
-  .lead {
-    color: #555;
-    margin-bottom: 24px;
+  .page-home .tool-card p { color: var(--muted); }
+  .page-home .tool-link { display: inline-block; margin-top: 8px; font-weight: 700; }
+  
+  .page-home .info-box {
+    margin-top: 16px;
+    padding: 16px;
+    background: #f5f5f5;
+    border-radius: 10px;
   }
   
-  .form {
-    margin-bottom: 32px;
+  /* Text formatter */
+  .page-text-format .container { max-width: 960px; }
+  .page-text-format .description { line-height: 1.7; }
+  
+  .page-text-format .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
   }
   
-  .grid {
+  .page-text-format .panel { display: flex; flex-direction: column; }
+  .page-text-format label { margin-bottom: 8px; font-weight: 700; }
+  
+  .page-text-format textarea {
+    width: 100%;
+    min-height: 320px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .page-text-format .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .page-text-format .control-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    font-size: 13px;
+  }
+  
+  .page-text-format .control-box h3 {
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  
+  .page-text-format .control-box label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-weight: 400;
+  }
+  
+  .page-text-format .actions { margin-bottom: 16px; }
+  
+  .page-text-format button {
+    padding: 10px 16px;
+    border: 1px solid #bbb;
+    background: var(--secondary);
+    color: var(--text);
+    font-size: 14px;
+  }
+  
+  .page-text-format button:hover { background: var(--secondary-hover); }
+  .page-text-format .sub-actions { margin-top: 12px; }
+  
+  .page-text-format .message {
+    margin: 16px 0;
+    padding: 10px 12px;
+    border: 1px solid #cfe3ff;
+    border-radius: 8px;
+    background: #eef6ff;
+    color: #234;
+  }
+  
+  /* Character count */
+  .page-char-count {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 10px;
+    background: #fff;
+  }
+  
+  .page-char-count textarea {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .page-char-count button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: 1px solid #bbb;
+    background: var(--secondary);
+    color: var(--text);
+  }
+  
+  .page-char-count button:hover { background: var(--secondary-hover); }
+  
+  .page-char-count .result {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 6px;
+  }
+  
+  .page-char-count .result p { margin-bottom: 8px; }
+  .page-char-count .hint { margin-top: 15px; font-size: 14px; }
+  
+  /* Blog prompt maker */
+  .page-blog-prompt .form { margin-bottom: 32px; }
+  
+  .page-blog-prompt .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
   
-  .field {
-    display: flex;
-    flex-direction: column;
-  }
+  .page-blog-prompt .field { display: flex; flex-direction: column; }
+  .page-blog-prompt .field.full { grid-column: 1 / -1; }
+  .page-blog-prompt label { margin-bottom: 8px; font-weight: 600; }
+  .page-blog-prompt small { margin-bottom: 6px; color: #666; }
   
-  .field.full {
-    grid-column: 1 / -1;
-  }
-  
-  label {
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  
-  input,
-  select,
-  textarea {
-    font: inherit;
+  .page-blog-prompt input,
+  .page-blog-prompt select,
+  .page-blog-prompt textarea {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background: #fff;
   }
   
-  textarea {
-    resize: vertical;
-  }
-  
-  .checkbox-group {
+  .page-blog-prompt .checkbox-group {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
     padding-top: 8px;
   }
   
-  .checkbox-group label {
-    font-weight: 500;
-  }
+  .page-blog-prompt .checkbox-group label { font-weight: 500; }
   
-  .actions {
-    margin-top: 20px;
-    display: flex;
-    gap: 12px;
-  }
-  
-  button {
+  .page-blog-prompt button {
     border: none;
-    border-radius: 8px;
     padding: 12px 18px;
-    font: inherit;
-    cursor: pointer;
-    background: #222;
-    color: #fff;
+    background: var(--primary);
+    color: var(--primary-text);
   }
   
-  button.secondary {
+  .page-blog-prompt button.secondary {
     background: #e9e9ec;
-    color: #222;
+    color: var(--text);
   }
   
-  .alert {
-    margin-bottom: 20px;
-    padding: 14px 16px;
-    border-radius: 8px;
-  }
-  
-  .alert.error {
-    background: #fde8e8;
-    color: #9b1c1c;
-  }
-  
-  .alert.warning {
-    background: #fff8db;
-    color: #7a5d00;
-  }
-  
-  .result-header {
+  .page-blog-prompt .result-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .result textarea {
+  .page-blog-prompt .result textarea {
     width: 100%;
-    margin-top: 12px;
     min-height: 320px;
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
   }
   
-  .nav {
+  .page-blog-prompt .alert {
     margin-bottom: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
   }
-
-  .nav a {
-    margin-right: 10px;
+  
+  .page-blog-prompt .alert.error { background: #fde8e8; color: #9b1c1c; }
+  .page-blog-prompt .alert.warning { background: #fff8db; color: #7a5d00; }
+  
+  /* Document pages */
+  .page-doc {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+    background: #fff;
+    line-height: 1.8;
+  }
+  
+  .page-doc .nav { margin-bottom: 24px; }
+  .page-doc h1 { margin-bottom: 12px; }
+  .page-doc h2 { margin-top: 32px; margin-bottom: 12px; font-size: 22px; }
+  
+  .page-doc .box {
+    margin: 20px 0;
+    padding: 16px 18px;
+    background: #f7f7f7;
+    border-radius: 10px;
+  }
+  
+  .page-doc .contact-button {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: var(--link);
+    color: #fff;
+    font-weight: 700;
     text-decoration: none;
-    color: #0070f3;
   }
-
+  
+  .page-doc .contact-button:hover {
+    opacity: 0.9;
+    text-decoration: none;
+  }
+  
+  .page-doc ul { padding-left: 20px; }
+  
+  /* Responsive */
+  @media (max-width: 800px) {
+    .container {
+      margin: 20px 12px;
+      padding: 18px;
+    }
+  
+    .page-text-format .grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .page-text-format textarea {
+      min-height: 220px;
+    }
+  }
+  
   @media (max-width: 768px) {
-    .grid {
+    .page-blog-prompt .grid {
       grid-template-columns: 1fr;
     }
   }
+  
+  @media (max-width: 560px) {
+    .page-home .header-inner {
+      align-items: flex-start;
+    }
+  
+    .page-home .site-title {
+      font-size: 28px;
+    }
+  
+    .nav {
+      gap: 6px 10px;
+    }
+  }
+  

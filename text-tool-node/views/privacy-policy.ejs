@@ -8,77 +8,11 @@
     name="description"
     content="Morish Toolsのプライバシーポリシーです。広告配信、Cookie、アクセス解析、お問い合わせ時の情報の取り扱いについて記載しています。"
   >
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-      line-height: 1.8;
-      color: #222;
-      background: #fff;
-    }
-
-    a {
-      color: #0070f3;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .nav {
-      margin-bottom: 24px;
-      font-size: 14px;
-    }
-
-    .nav a {
-      margin-right: 12px;
-    }
-
-    h1 {
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      margin-top: 32px;
-      margin-bottom: 12px;
-      font-size: 22px;
-    }
-
-    p {
-      margin: 0 0 14px;
-    }
-
-    .box {
-      background: #f7f7f7;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 20px;
-    }
-
-    footer {
-      margin-top: 48px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      font-size: 14px;
-      color: #666;
-    }
-
-    footer a {
-      margin-right: 12px;
-    }
-  </style>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/def_image.png" type="image/png">
 </head>
-<body>
-  <div class="nav">
-    <a href="/">トップ</a>
-    <a href="/text-format">テキスト整形</a>
-    <a href="/char-count">文字数カウント</a>
-    <a href="/blog-prompt-maker">ブログプロンプト生成</a>
-    <a href="/contact">お問い合わせ</a>
-  </div>
+<body class="page-doc">
+  <%- include("partials/nav", { active: "privacy-policy" }) %>
 
   <h1>プライバシーポリシー</h1>
 
@@ -156,9 +90,6 @@
 
   <p>制定日：2026年4月16日</p>
 
-  <footer>
-    <a href="/">トップ</a>
-    <a href="/contact">お問い合わせ</a>
-  </footer>
+  <%- include("partials/footer") %>
 </body>
 </html>

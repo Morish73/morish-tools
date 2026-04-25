@@ -8,105 +8,27 @@
     name="description"
     content="無料・登録不要ですぐ使える便利ツール集です。テキスト整形、文字数カウント、JSON整形など、仕事や日常で使いやすい小さなツールをまとめています。"
   >
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
-      line-height: 1.7;
-      color: #222;
-      background: #fff;
-    }
-
-    a {
-      color: #0070f3;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    header {
-      margin-bottom: 32px;
-    }
-
-    .site-title {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .lead {
-      color: #555;
-      margin: 0;
-    }
-
-    .section {
-      margin-top: 36px;
-    }
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .tool-card {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 18px;
-      background: #fafafa;
-    }
-
-    .tool-card h2 {
-      font-size: 20px;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .tool-card p {
-      margin-top: 0;
-      color: #555;
-    }
-
-    .tool-link {
-      display: inline-block;
-      margin-top: 8px;
-      font-weight: bold;
-    }
-
-    .info-box {
-      background: #f5f5f5;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 16px;
-    }
-
-    footer {
-      margin-top: 48px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      font-size: 14px;
-      color: #666;
-    }
-
-    footer a {
-      margin-right: 12px;
-    }
-  </style>
+  <link rel="icon" href="/def_image.png" type="image/png">
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <header>
-    <h1 class="site-title">Morish Tools</h1>
-    <p class="lead">
-      無料・登録不要ですぐ使える、シンプルな便利ツール集です。<br>
-      文章作業やちょっとした整形・確認を、できるだけ手早く済ませるための道具をまとめています。
-    </p>
-  </header>
-
-  <main>
+<body class="page-home">
+    <header class="header">
+        <div class="header-inner">
+          <a href="/">
+            <img src="/def_image.png" alt="Morish Tools" class="logo">
+          </a>
+      
+          <div class="header-text">
+            <h1 class="site-title">Morish Tools</h1>
+            <span class="lead">
+              無料・登録不要ですぐ使える、シンプルな便利ツール集です。<br>
+              文章作業やちょっとした整形・確認を、できるだけ手早く済ませるための道具をまとめています。
+            </span>
+          </div>
+        </div>
+      </header>  
+    <%- include("partials/nav", { active: "home" }) %>
+    <main>
     <section class="section">
       <h2>公開中のツール</h2>
 
@@ -165,9 +87,6 @@
     </section>
   </main>
 
-  <footer>
-    <a href="/privacy-policy">プライバシーポリシー</a>
-    <a href="/contact">お問い合わせ</a>
-  </footer>
+  <%- include("partials/footer") %>
 </body>
 </html>

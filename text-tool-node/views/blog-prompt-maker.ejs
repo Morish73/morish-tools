@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ブログ記事作成プロンプト生成ツール</title>
   <meta name="description" content="入力内容をもとに、AIに渡せるブログ記事作成プロンプトを生成します。">
-
   <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/def_image.png" type="image/png">
 </head>
-<body>
+<body class="page-blog-prompt">
   <div class="container">
 
-  <!-- ナビ -->
-  <div class="nav">
-    <a href="/">トップ</a>
-    <a href="/text-format">テキスト整形</a>
-    <a href="/char-count">文字数カウント</a>
-    <a href="/blog-prompt-maker">ブログプロンプト生成</a>
-  </div>
+  <%- include("partials/nav", { active: "blog-prompt-maker" }) %>
 
     <h1>ブログ記事作成プロンプト生成ツール</h1>
     <p class="lead">
@@ -165,6 +159,7 @@
       <h2>生成されたプロンプト</h2>
       <textarea readonly rows="20"><%= prompt || '' %></textarea>
     </section>
+    <%- include("partials/footer") %>
   </div>
 </body>
 </html>
